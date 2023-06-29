@@ -16,8 +16,11 @@ class CargoController extends Controller
      */
     public function index()
     {
-        $cargos = Cargo::orderBy('cargo');
-        return view('cargo.index')->with(compact('cargos'));
+        $cargos = Cargo::orderBy('cargo')
+                                ->get();
+
+        return view('cargo.index')
+        ->with(compact('cargos'));
     }
 
     /**
@@ -54,7 +57,7 @@ class CargoController extends Controller
     public function edit(int $id)
     {
         $cargo = Cargo::find($id);
-        return view('cargo.form')->with(compact('cargos'));
+        return view('cargo.form')->with(compact('cargo'));
     }
 
     /**
@@ -64,7 +67,9 @@ class CargoController extends Controller
     {
         $cargo = Cargo::find($id);
         $cargo->update($request->all());
-        return redirect()->route('cargo.index')->with('sucess','Atualizado com sucesso!');
+        return redirect()
+            ->route('cargo.index')
+            ->with('sucess','Atualizado com sucesso!');
     }
 
     /**
@@ -73,6 +78,8 @@ class CargoController extends Controller
     public function destroy(int $id)
     {
         Cargo::find($id)->delete();
-        return redirect()->back()->with('destroy', 'Excluído com sucesso!');
+        return redirect()
+            ->back()
+            ->with('destroy', 'Excluído com sucesso!');
     }
 }
