@@ -140,7 +140,7 @@ Route::middleware('auth')->group(function () {
 
      //tamanhos de produto
      Route::post('/tamanho/store/{id_produto}', 'storeTamanho')->name('produto.storeTamanho');
-     Route::post('/tamanho/update','updateTamanho')->name('updateTamanho');
+     Route::post('/tamanho/update','updateTamanho')->name('produto.updateTamanho');
      Route::post('/tamanho/destroy', 'destroyTamanho')->name('produto.destroyTamanho');
  });
 
