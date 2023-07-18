@@ -74,7 +74,7 @@ class ProdutoController extends Controller
      */
 
 
-     public function createTamanho(){
+     public function createTamanho(int $id_produto){
         $produtoTamanho = null;
         $produto = Produto::find($id_produto);
         $tamanhos = ProdutoTamanho::class;
