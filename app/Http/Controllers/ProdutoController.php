@@ -103,5 +103,8 @@ public function storetamanho(Request $request,int $id_produto){
 
 
 }
+    public function editTamanho (int $id){
+
+    }
 
 }
