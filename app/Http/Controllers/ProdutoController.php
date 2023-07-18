@@ -53,14 +53,19 @@ class ProdutoController extends Controller
      */
     public function update(UpdateProdutoRequest $request, Produto $produto)
     {
-        //
+        $produto = Produto::find($id);
+        $produto->update($request->all());
+
+        return redirect()->route('produto.show',['id'=>$produto->id_produto])
+        ->with('sucess','Atualizado com sucesso!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Produto $produto)
+    public function destroy(int $id)
     {
-        //
+        Produto::find($id)->delete();
+        return redirect()->back()->with('danger', 'Removido com sucesso!')
     }
 }
