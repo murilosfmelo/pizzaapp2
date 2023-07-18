@@ -75,12 +75,12 @@ class ProdutoController extends Controller
 
 
      public function createTamanho(){
-
+        $produtoTamanho = null;
         $produto = Produto::find($id_produto);
         $tamanhos = ProdutoTamanho::class;
 
         return view('produto.formTamanho')
-                ->with(compact('produto', 'tamanhos'));
+                ->with(compact('produto', 'tamanhos','produtoTamanho'));
 
 
 
@@ -104,6 +104,20 @@ public function storetamanho(Request $request,int $id_produto){
 
 }
     public function editTamanho (int $id){
+        $produtoTamanho = ProdutoTamanho::find($id);
+        //$produto = Produto::find($produtoTamanho->id_prduto);
+        $produtoTamanho->produto();
+        $tamanho = ProdutoTamanho::class;
+
+        return view('produto.formTamanho')
+                ->with(compact('produto', 'tamanhos','produtoTamanho'));
+
+
+    }
+    public function updateTamanho(Request $request,int $id){
+
+        $produtoTamanho = ProdutoTamanho::find($id);
+        $produtoTamanho->update($request->all());
 
     }
 
