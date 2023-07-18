@@ -118,6 +118,16 @@ public function storetamanho(Request $request,int $id_produto){
 
         $produtoTamanho = ProdutoTamanho::find($id);
         $produtoTamanho->update($request->all());
+        return redirect()->route('produto.show',['id'=>$produtoTamanho->id_produto])->with('sucess','Tamanho cadastro com sucesso.');
+
+
+
+    }
+
+    public function destroyTamanho(int $id){
+
+        ProdutoTamanho::find($id)->delete();
+        return redirect()->back()->with('danger','Removido com sucesso!');
 
     }
 
