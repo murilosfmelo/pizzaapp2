@@ -66,6 +66,42 @@ class ProdutoController extends Controller
     public function destroy(int $id)
     {
         Produto::find($id)->delete();
-        return redirect()->back()->with('danger', 'Removido com sucesso!')
+        return redirect()->back()->with('danger', 'Removido com sucesso!');
     }
+
+    /**
+     * Tamanhos de produtos
+     */
+
+
+     public function createTamanho(){
+
+        $produto = Produto::find($id_produto);
+        $tamanhos = ProdutoTamanho::class;
+
+        return view('produto.formTamanho')
+                ->with(compact('produto', 'tamanhos'));
+
+
+
+     }
+public function storetamanho(Request $request,int $id_produto){
+
+    $produtoTamanho = ProdutoTamanho::create([
+
+
+        'id_produto' => $id_produto,
+        'id_tamanho' => $request->id_tamanho,
+        'preco' => $request->preco,
+        'observacoes'=>$request->observacoes
+    ]);
+
+    return route('produto.show',['id'=>$id_produto])->with('sucess','Tamanho cadastro com sucesso.');
+
+
+
+
+
+}
+
 }
